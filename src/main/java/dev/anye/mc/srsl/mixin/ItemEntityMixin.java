@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(ItemEntity.class)
+@Mixin(value = ItemEntity.class,remap = false)
 public abstract class ItemEntityMixin {
     @Unique
     private static final boolean srsl$enable = EnchantsConfig.INSTANCE.isEnable(EnchantReg.Z_INDESTRUCTIBLE);

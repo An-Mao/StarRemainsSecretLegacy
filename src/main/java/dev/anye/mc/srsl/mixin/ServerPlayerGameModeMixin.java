@@ -21,7 +21,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Mixin(ServerPlayerGameMode.class)
+@Mixin(value = ServerPlayerGameMode.class,remap = false)
 public abstract class ServerPlayerGameModeMixin {
     @Unique
     private final List<BlockPos> srsl$temp = new ArrayList<>();
@@ -32,8 +32,11 @@ public abstract class ServerPlayerGameModeMixin {
 
     @Inject(method = "destroyBlock", at = @At("HEAD"), cancellable = true)
     public void srsl$chain_harvesting$destroyBlock(BlockPos pos, CallbackInfoReturnable<Boolean> cir){
+		//System.out.println("destroyBlock");
         if (!srsl$temp.contains(pos)) {
+			//System.out.println("destroyBlock 0");
             if (EnchantHelper.hasEnchant(player.getMainHandItem(), Enchants.chainHarvesting)) {
+				//System.out.println("destroyBlock 1");
                 Block block = level.getBlockState(pos).getBlock();
                 int[] count = {player.getMainHandItem().getMaxDamage() - player.getMainHandItem().getDamageValue()};
                 srsl$temp.add(pos);

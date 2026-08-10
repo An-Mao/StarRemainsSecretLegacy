@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(value = LootItemRandomChanceWithEnchantedBonusCondition.class,priority = 1)
+@Mixin(value = LootItemRandomChanceWithEnchantedBonusCondition.class,remap = false,priority = 1)
 public class LootItemRandomChanceWithEnchantedBonusConditionMixin {
     @Final
     @Shadow

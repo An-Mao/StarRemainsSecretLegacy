@@ -25,13 +25,13 @@ public class ServerEvent {
                 Enchant revelation = EnchantReg.getEnchant(enchantData.getString("revelation").get());
                 ItemStack input = anvilUpdateEvent.getLeft().copy();
                 if (revelation.canEnchant(input)) {
-                    System.out.println("2");
+                    //System.out.println("2");
                     CompoundTag nbt = EnchantHelper.getAllData(input);
                     int refines = nbt.getInt("refine").orElse(0);
                     CompoundTag enchant = nbt.getCompound("enchant").orElse(new CompoundTag());
                     int lvl = enchant.getInt(EnchantReg.getResourceLocation(revelation).toString()).orElse(0);
                     if (lvl < revelation.getMaxLevel()) {
-                        System.out.println("3");
+                        //System.out.println("3");
                         lvl++;
                         enchant.putInt(EnchantReg.getResourceLocation(revelation).toString(), lvl);
                         nbt.put("enchant", enchant);
