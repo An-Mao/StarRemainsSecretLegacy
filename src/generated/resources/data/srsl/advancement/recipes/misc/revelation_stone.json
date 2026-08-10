@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_star_remains_essence": {
+      "conditions": {
+        "items": [
+          {
+            "items": "srsl:star_remains_essence"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "srsl:revelation_stone"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_star_remains_essence"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "srsl:revelation_stone"
+    ]
+  }
+}

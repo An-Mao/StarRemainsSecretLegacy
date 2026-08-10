@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 1600,
+  "experience": 1.0,
+  "group": "star_remains",
+  "ingredient": "srsl:star_remains",
+  "result": {
+    "id": "srsl:star_remains_essence"
+  }
+}

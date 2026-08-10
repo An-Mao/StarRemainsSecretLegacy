@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.anye.mc.srsl.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "mixins.srsl.refmap.json",
+  "mixins": [
+    "EnchantmentHelperMixin",
+    "ItemEntityMixin",
+    "LootItemRandomChanceWithEnchantedBonusConditionMixin",
+    "ServerPlayerGameModeMixin"
+  ],
+  "client": [
+  ]
+}

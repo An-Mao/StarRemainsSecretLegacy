@@ -1,0 +1,6 @@
+{
+  "type": "srsl:star_remains",
+  "biomes": "#minecraft:is_overworld",
+  "spawn_overrides": {},
+  "step": "surface_structures"
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": "minecraft:echo_shard",
+    "B": "minecraft:lapis_block",
+    "C": "srsl:star_remains_essence",
+    "D": "minecraft:nether_star"
+  },
+  "pattern": [
+    "ABA",
+    "BCB",
+    "DBD"
+  ],
+  "result": {
+    "id": "srsl:revelation_stone"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": "minecraft:dragon_head",
+    "B": "minecraft:echo_shard",
+    "C": "srsl:star_remains_essence",
+    "D": "minecraft:nether_star"
+  },
+  "pattern": [
+    "ABA",
+    "BCB",
+    "DBD"
+  ],
+  "result": {
+    "id": "srsl:structure_scroll"
+  }
+}
