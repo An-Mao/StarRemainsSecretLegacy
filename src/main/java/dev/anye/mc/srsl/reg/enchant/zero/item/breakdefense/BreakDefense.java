@@ -1,9 +1,8 @@
 package dev.anye.mc.srsl.reg.enchant.zero.item.breakdefense;
 
 import dev.anye.core.math._Math;
-import dev.anye.mc.srsl.config.enchants.EnchantsConfig;
-import dev.anye.mc.srsl.reg.enchant.EnchantReg;
-import dev.anye.mc.srsl.effect.Effects;
+import dev.anye.mc.srsl.config.enchants.EnchantConfigData;
+import dev.anye.mc.srsl.reg.effect.Effects;
 import dev.anye.mc.srsl.reg.enchant.zero.item.ZeroItemE;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -12,11 +11,16 @@ import net.minecraft.world.entity.LivingEntity;
 import org.jetbrains.annotations.NotNull;
 
 public class BreakDefense extends ZeroItemE {
-	private final float probability = EnchantsConfig.INSTANCE.getValue(EnchantReg.Z_BREAK_DEFENSE, "probability");
-	private static final MobEffectInstance BreakDefense = new MobEffectInstance(Effects.BREAK_DEFENSE.getDelegate(), 1, 200);
-
-	public BreakDefense() {
-		super();
+	private static final EnchantConfigData DEFAULT = EnchantConfigData.create(data -> {
+		data.add("probability",12F);
+	});
+	private final float probability;
+	public record Data(float probability) {
+		public static final Data DEFAULT = new Data(12);
+	}
+	public BreakDefense(EnchantConfigData enchantConfigData) {
+		super(enchantConfigData,DEFAULT);
+		probability = config.asFloat("probability");
 	}
 
 	@Override
@@ -24,7 +28,7 @@ public class BreakDefense extends ZeroItemE {
 		if (pAttacker instanceof ServerPlayer) {
 			if (pTarget instanceof LivingEntity livingEntity) {
 				if (_Math.RD.getIntRandomNumber(1, 100) < pLevel * probability) {
-					livingEntity.addEffect(BreakDefense);
+					livingEntity.addEffect(new MobEffectInstance(Effects.BREAK_DEFENSE.getDelegate(), 200, 1));
 				}
 			}
 		}

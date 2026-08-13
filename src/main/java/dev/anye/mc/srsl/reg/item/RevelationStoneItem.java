@@ -1,7 +1,9 @@
-package dev.anye.mc.srsl.item;
+package dev.anye.mc.srsl.reg.item;
 
-import dev.anye.mc.srsl.core.*;
-import dev.anye.mc.srsl.reg.DataReg;
+import dev.anye.mc.srsl.core.EnchantHelper;
+import dev.anye.mc.srsl.reg.data.DataReg;
+import dev.anye.mc.srsl.reg.data.EnchantData;
+import dev.anye.mc.srsl.reg.enchant.Enchant;
 import dev.anye.mc.srsl.reg.enchant.EnchantReg;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -15,21 +17,22 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.function.Consumer;
 
 public class RevelationStoneItem extends Item {
-	private static EnchantRandom enchantRandom = null;
+	private static final String ID = "revelation";
 
 	public RevelationStoneItem() {
 		super(new Properties().setId(ItemReg.RevelationStone.getKey()).stacksTo(1));
 	}
 
 	@Override
-	public @NotNull Component getName(ItemStack pStack) {
-		CompoundTag enchantData = EnchantHelper.getAllData(pStack);
-		if (enchantData.getString("revelation").isEmpty()) {
-			return super.getName(pStack);
+	public @NotNull Component getName(@NonNull ItemStack itemStack) {
+		CompoundTag enchantData = EnchantHelper.getAllData(itemStack);
+		if (enchantData.getString(ID).isEmpty()) {
+			return super.getName(itemStack);
 		}
 		return Component.translatable("item.srsl.revelation_stone.show").append(EnchantReg.getEnchant(enchantData.getString("revelation").get()).getFullName(1));
 	}
@@ -39,11 +42,8 @@ public class RevelationStoneItem extends Item {
 		if (pPlayer instanceof ServerPlayer serverPlayer) {
 			ItemStack itemstack = serverPlayer.getItemInHand(pUsedHand);
 			CompoundTag enchantData = EnchantHelper.getAllData(itemstack);
-			if (enchantData.getString("revelation").isEmpty()) {
-				if (enchantRandom == null) {
-					enchantRandom = new EnchantRandom(EnchantHelper.getAllEnchants());
-				}
-				enchantData.putString("revelation", EnchantReg.getResourceLocation(enchantRandom.getRandomItem()).toString());
+			if (enchantData.getString(ID).isEmpty()) {
+				enchantData.putString(ID, EnchantReg.getResourceLocation(EnchantRandom.getRandom()).toString());
 				itemstack.set(DataReg.Enchant_Data.get(), new EnchantData(enchantData));
 			}
 		}
@@ -54,7 +54,7 @@ public class RevelationStoneItem extends Item {
 	public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay tooltipDisplay,
 	                            Consumer<Component> tooltipAdder, TooltipFlag flag) {
 		CompoundTag enchantData = EnchantHelper.getAllData(stack);
-		String revelation = enchantData.getString("revelation").orElse("");
+		String revelation = enchantData.getString(ID).orElse("");
 		if (!revelation.isEmpty()) {
 			Enchant enchant = EnchantReg.getEnchant(revelation);
 			tooltipAdder.accept(Component.literal(" -->").append(Component.translatable(enchant.getDescriptionId() + ".desc")));

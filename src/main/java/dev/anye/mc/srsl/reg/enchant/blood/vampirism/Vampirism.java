@@ -16,13 +16,18 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Collection;
 
 public class Vampirism extends BloodEnchant {
+	private static final EnchantConfigData DEFAULT = EnchantConfigData.create(data -> {
+		data.add("maxLevel",5);
+	});
 	private final int maxLevel;
 
-	public Vampirism(EnchantConfigData enchantConfigData) {
-		super(enchantConfigData,EnchantConfigData.create(defaultConfig -> {
-			defaultConfig.putInt("maxLevel",5);
-		}));
-		maxLevel = config.getIntOr("maxLevel",5);
+	public record Data(int maxLevel) {
+		public static final Vampirism.Data DEFAULT = new Vampirism.Data(5);
+	}
+
+	public Vampirism(EnchantConfigData enchantConfigData){
+		super(enchantConfigData, DEFAULT);
+		maxLevel = config.asInt("maxLevel");
 	}
 
 	@Override
@@ -53,4 +58,6 @@ public class Vampirism extends BloodEnchant {
 		}
 		super.doPostAttack(pAttacker, pTarget, pLevel);
 	}
+
+
 }

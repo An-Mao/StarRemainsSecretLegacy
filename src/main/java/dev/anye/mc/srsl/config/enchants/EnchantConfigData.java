@@ -1,25 +1,26 @@
 package dev.anye.mc.srsl.config.enchants;
 
 
-import com.google.gson.JsonObject;
+import dev.anye.core.data._Data;
 
-public class EnchantsConfigData {
-	private boolean enable;
-	private JsonObject parameters;
+import java.util.function.Consumer;
 
-	public void setEnable(boolean enable) {
-		this.enable = enable;
+public record EnchantConfigData(boolean enable, _Data parameters) {
+
+
+	public static  EnchantConfigData create(_Data parameters){
+		return new EnchantConfigData(true,parameters);
 	}
 
-	public boolean isEnable() {
-		return enable;
+	public static EnchantConfigData create(Consumer<_Data> consumer){
+		return create(true,_Data.create(consumer));
 	}
 
-	public void setParameters(JsonObject parameters) {
-		this.parameters = parameters;
+	public static EnchantConfigData create(boolean enable, _Data parameters){
+		return new EnchantConfigData(enable,parameters);
 	}
 
-	public JsonObject getParameters() {
-		return parameters;
+	public static EnchantConfigData empty(){
+		return new EnchantConfigData(true,_Data.empty());
 	}
 }

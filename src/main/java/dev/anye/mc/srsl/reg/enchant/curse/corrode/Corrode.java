@@ -1,8 +1,8 @@
 package dev.anye.mc.srsl.reg.enchant.curse.corrode;
 
 import dev.anye.core.math._Math;
-import dev.anye.mc.srsl.config.enchants.EnchantsConfig;
-import dev.anye.mc.srsl.reg.enchant.EnchantReg;
+import dev.anye.mc.srsl.config.enchants.EnchantConfigData;
+import dev.anye.mc.srsl.reg.enchant.blood.vampirism.Vampirism;
 import dev.anye.mc.srsl.reg.enchant.curse.CurseEnchant;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
@@ -11,9 +11,18 @@ import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 public class Corrode extends CurseEnchant {
-	private final float probability = EnchantsConfig.INSTANCE.getValue(EnchantReg.CORRODE, "probability");
+	private static final EnchantConfigData DEFAULT = EnchantConfigData.create(data -> {
+		data.add("probability",10F);
+	});
+	private final float probability;
 
-	public Corrode() {
+	public record Data(float probability) {
+		public static final Corrode.Data DEFAULT = new Corrode.Data(10);
+	}
+
+	public Corrode(EnchantConfigData enchantConfigData) {
+		super(enchantConfigData,DEFAULT);
+		probability = config.asFloat("probability");
 	}
 
 	@Override

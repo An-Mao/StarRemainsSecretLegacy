@@ -1,4 +1,7 @@
 package dev.anye.mc.srsl.reg.enchant;
 
-public class EnchantData {
+import net.minecraft.nbt.CompoundTag;
+
+public interface EnchantData {
+	CompoundTag defaultConfig();
 }

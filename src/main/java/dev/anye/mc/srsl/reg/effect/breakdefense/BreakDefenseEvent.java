@@ -1,7 +1,7 @@
-package dev.anye.mc.srsl.effect.breakdefense;
+package dev.anye.mc.srsl.reg.effect.breakdefense;
 
 import dev.anye.mc.srsl.SRSL;
-import dev.anye.mc.srsl.effect.Effects;
+import dev.anye.mc.srsl.reg.effect.Effects;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;

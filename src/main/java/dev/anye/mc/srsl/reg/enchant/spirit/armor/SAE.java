@@ -1,13 +1,14 @@
 package dev.anye.mc.srsl.reg.enchant.spirit.armor;
 
-import dev.anye.mc.srsl.core.Enchant;
+import dev.anye.mc.srsl.config.enchants.EnchantConfigData;
 import dev.anye.mc.srsl.core.EnchantHelper;
+import dev.anye.mc.srsl.reg.enchant.Enchant;
 import dev.anye.mc.srsl.reg.enchant.spirit.SpiritE;
 import net.minecraft.world.item.ItemStack;
 
-public class SAE extends SpiritE {
-	protected SAE() {
-		super();
+public abstract class SAE extends SpiritE {
+	protected SAE(EnchantConfigData enchantConfigData,EnchantConfigData defaultData) {
+		super(enchantConfigData,defaultData);
 	}
 
 	@Override

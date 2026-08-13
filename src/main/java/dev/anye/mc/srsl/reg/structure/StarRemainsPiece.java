@@ -1,4 +1,4 @@
-package dev.anye.mc.srsl.structure;
+package dev.anye.mc.srsl.reg.structure;
 
 import com.mojang.logging.LogUtils;
 import dev.anye.mc.srsl.SRSL;

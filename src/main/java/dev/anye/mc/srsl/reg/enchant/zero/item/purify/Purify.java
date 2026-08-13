@@ -1,8 +1,7 @@
 package dev.anye.mc.srsl.reg.enchant.zero.item.purify;
 
 import dev.anye.core.math._Math;
-import dev.anye.mc.srsl.config.enchants.EnchantsConfig;
-import dev.anye.mc.srsl.reg.enchant.EnchantReg;
+import dev.anye.mc.srsl.config.enchants.EnchantConfigData;
 import dev.anye.mc.srsl.reg.enchant.zero.item.ZeroItemE;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
@@ -13,11 +12,17 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 public class Purify extends ZeroItemE {
-	private final float probability = EnchantsConfig.INSTANCE.getValue(EnchantReg.Z_PURIFY, "probability");
-	String[] SK = {"Health", "Pos"};
-
-	public Purify() {
-		super();
+	private static final EnchantConfigData DEFAULT = EnchantConfigData.create(data -> {
+		data.add("probability",5F);
+	});
+	private final float probability;
+	//String[] SK = {"Health", "Pos"};
+	public record Data(float probability) {
+		public static final Data DEFAULT = new Data(5);
+	}
+	public Purify(EnchantConfigData enchantConfigData) {
+		super(enchantConfigData,DEFAULT);
+		probability = config.asFloat("probability");
 	}
 
 	@Override

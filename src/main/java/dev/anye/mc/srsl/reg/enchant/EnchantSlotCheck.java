@@ -1,4 +1,4 @@
-package dev.anye.mc.srsl.core;
+package dev.anye.mc.srsl.reg.enchant;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.world.item.*;

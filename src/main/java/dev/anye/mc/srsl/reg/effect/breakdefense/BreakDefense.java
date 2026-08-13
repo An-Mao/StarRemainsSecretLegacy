@@ -1,4 +1,4 @@
-package dev.anye.mc.srsl.effect.breakdefense;
+package dev.anye.mc.srsl.reg.effect.breakdefense;
 
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;

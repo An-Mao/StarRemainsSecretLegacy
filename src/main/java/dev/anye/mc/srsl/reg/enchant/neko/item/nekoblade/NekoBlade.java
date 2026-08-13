@@ -2,8 +2,7 @@ package dev.anye.mc.srsl.reg.enchant.neko.item.nekoblade;
 
 
 import dev.anye.mc.cores.helper.item.ItemHelper;
-import dev.anye.mc.srsl.config.enchants.EnchantsConfig;
-import dev.anye.mc.srsl.reg.enchant.EnchantReg;
+import dev.anye.mc.srsl.config.enchants.EnchantConfigData;
 import dev.anye.mc.srsl.reg.enchant.neko.item.NekoEI;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -14,11 +13,18 @@ import net.minecraft.world.item.ItemStack;
 import java.util.Collection;
 
 public class NekoBlade extends NekoEI {
-	private final float base = EnchantsConfig.INSTANCE.getConfig(EnchantReg.NEKO_BLADE).getParameters().get("baseDamage").getAsFloat();
-
-	public NekoBlade() {
-		super();
+	private static final EnchantConfigData DEFAULT = EnchantConfigData.create(data -> {
+		data.add("baseDamage",0.15F);
+	});
+	private final float base;
+	public record Data(float baseDamage) {
+		public static final Data DEFAULT = new Data(0.15F);
 	}
+	public NekoBlade(EnchantConfigData enchantConfigData) {
+		super(enchantConfigData,DEFAULT);
+		base = config.asFloat("baseDamage");
+	}
+
 
 	@Override
 	public float getDamageBonus(int level, Entity mobType, ItemStack enchantedItem) {

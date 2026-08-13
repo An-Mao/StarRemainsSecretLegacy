@@ -1,4 +1,4 @@
-package dev.anye.mc.srsl.effect.yanling;
+package dev.anye.mc.srsl.reg.effect.yanling;
 
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;

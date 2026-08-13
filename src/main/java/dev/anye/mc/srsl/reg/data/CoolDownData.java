@@ -1,4 +1,4 @@
-package dev.anye.mc.srsl.core;
+package dev.anye.mc.srsl.reg.data;
 
 import com.mojang.logging.LogUtils;
 import com.mojang.serialization.Codec;
@@ -7,6 +7,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.TagParser;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.world.entity.LivingEntity;
 import org.slf4j.Logger;
 
 import java.util.function.Consumer;
@@ -73,4 +74,7 @@ public class CoolDownData {
 	}
 
 
+	public static CoolDownData getCooldownData(LivingEntity livingEntity) {
+		return livingEntity.getData(DataReg.CoolDown.get());
+	}
 }

@@ -1,4 +1,4 @@
-package dev.anye.mc.srsl.effect.chaodu;
+package dev.anye.mc.srsl.reg.effect.chaodu;
 
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;

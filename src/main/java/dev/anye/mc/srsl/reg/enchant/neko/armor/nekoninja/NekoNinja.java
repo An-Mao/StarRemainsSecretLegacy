@@ -1,7 +1,6 @@
 package dev.anye.mc.srsl.reg.enchant.neko.armor.nekoninja;
 
-import dev.anye.mc.srsl.config.enchants.EnchantsConfig;
-import dev.anye.mc.srsl.reg.enchant.EnchantReg;
+import dev.anye.mc.srsl.config.enchants.EnchantConfigData;
 import dev.anye.mc.srsl.reg.enchant.neko.armor.NekoEA;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -10,10 +9,18 @@ import net.minecraft.world.entity.LivingEntity;
 import org.jetbrains.annotations.NotNull;
 
 public class NekoNinja extends NekoEA {
-	private final int maxLevel = EnchantsConfig.INSTANCE.getMaxLevel(EnchantReg.NEKO_NINJA);
+	private static final EnchantConfigData DEFAULT = EnchantConfigData.create(data -> {
+		data.add("maxLevel",3);
+	});
+	private final int maxLevel;
 
-	public NekoNinja() {
-		super();
+
+	public record Data(int maxLevel) {
+		public static final Data DEFAULT = new Data(3);
+	}
+	public NekoNinja(EnchantConfigData enchantConfigData) {
+		super(enchantConfigData,DEFAULT);
+		maxLevel = config.asInt("maxLevel");
 	}
 
 	@Override

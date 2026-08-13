@@ -1,4 +1,4 @@
-package dev.anye.mc.srsl.structure;
+package dev.anye.mc.srsl.reg.structure;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;

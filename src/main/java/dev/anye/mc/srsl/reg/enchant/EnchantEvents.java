@@ -4,7 +4,6 @@ import dev.anye.core.color._ColorCDT;
 import dev.anye.core.math._Math;
 import dev.anye.mc.cores.helper.component.ComponentStyle;
 import dev.anye.mc.srsl.SRSL;
-import dev.anye.mc.srsl.config.enchants.EnchantsConfig;
 import dev.anye.mc.srsl.core.EnchantHelper;
 import dev.anye.mc.srsl.reg.enchant.neko.armor.nekoblessing.NekoBlessing;
 import dev.anye.mc.srsl.reg.enchant.neko.armor.nekosoul.NekoSoul;
@@ -41,13 +40,6 @@ public class EnchantEvents {
 			"tooltips.srsl.love_y",
 			"tooltips.srsl.love_n"
 	};
-	private static final boolean duality = EnchantsConfig.INSTANCE.isEnable(EnchantReg.DUALITY);
-	private static final boolean love = EnchantsConfig.INSTANCE.isEnable(EnchantReg.NEKO_LOVE);
-	private static final boolean king = EnchantsConfig.INSTANCE.isEnable(EnchantReg.NEKO_KING);
-	private static final boolean emperor = EnchantsConfig.INSTANCE.isEnable(EnchantReg.NEKO_EMPEROR);
-	private static final boolean soul = EnchantsConfig.INSTANCE.isEnable(EnchantReg.NEKO_SOUL);
-	//blessing
-	private static final boolean blessing = EnchantsConfig.INSTANCE.isEnable(EnchantReg.NEKO_BLESSING);
 
 	@SubscribeEvent
 	public static void onTooltip(ItemTooltipEvent event) {
@@ -74,22 +66,22 @@ public class EnchantEvents {
             indexs += Blessing(player,item,tooltip,indexs);
 
              */
-			if (duality) {
+			if (EnchantReg.DUALITY.get().enable()) {
 				indexs += Duality(item, tooltip, indexs);
 			}
-			if (love) {
+			if (EnchantReg.NEKO_LOVE.get().enable()) {
 				indexs += Love(player, item, tooltip, indexs);
 			}
-			if (king) {
+			if (EnchantReg.NEKO_KING.get().enable()) {
 				indexs += King(player, item, tooltip, indexs);
 			}
-			if (emperor) {
+			if (EnchantReg.NEKO_EMPEROR.get().enable()) {
 				indexs += Emperor(player, item, tooltip, indexs);
 			}
-			if (soul) {
+			if (EnchantReg.NEKO_SOUL.get().enable()) {
 				indexs += Soul(player, item, tooltip, indexs);
 			}
-			if (blessing) {
+			if (EnchantReg.NEKO_BLESSING.get().enable()) {
 				indexs += Blessing(player, item, tooltip, indexs);
 			}
 			if (damage[0] > 0) {

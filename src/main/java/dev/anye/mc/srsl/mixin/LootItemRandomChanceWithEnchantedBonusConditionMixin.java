@@ -20,41 +20,41 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(value = LootItemRandomChanceWithEnchantedBonusCondition.class,remap = false,priority = 1)
+@Mixin(value = LootItemRandomChanceWithEnchantedBonusCondition.class, remap = false, priority = 1)
 public class LootItemRandomChanceWithEnchantedBonusConditionMixin {
-    @Final
-    @Shadow
-    private float unenchantedChance;
+	@Final
+	@Shadow
+	private float unenchantedChance;
 
-    @Final
-    @Shadow
-    private LevelBasedValue enchantedChance;
+	@Final
+	@Shadow
+	private LevelBasedValue enchantedChance;
 
-    @Final
-    @Shadow
-    private Holder<Enchantment> enchantment;
+	@Final
+	@Shadow
+	private Holder<Enchantment> enchantment;
 
-    /**
-     * @author AnMao
-     * @reason add loot
-     */
-    @Inject(method = "test(Lnet/minecraft/world/level/storage/loot/LootContext;)Z", at = @At("HEAD"), cancellable = true)
-    public void srsl$test$add(LootContext context, CallbackInfoReturnable<Boolean> cir) {
-        Entity entity = context.getParameter(LootContextParams.ATTACKING_ENTITY);
-        int i = entity instanceof LivingEntity livingentity ? EnchantmentHelper.getEnchantmentLevel(this.enchantment, livingentity) : 0;
-        float f = i > 0 ? this.enchantedChance.calculate(i) : this.unenchantedChance;
-        if (entity instanceof ServerPlayer serverPlayer) {
-            ItemStack item = serverPlayer.getMainHandItem();
-            CompoundTag nbt = EnchantHelper.getAllData(item);
-            CompoundTag dualityData = nbt.getCompound("duality.data").orElse(new CompoundTag());
-            int a = dualityData.getInt("duality").orElse(0);
-            if (a > 0) {
-                a /= 5;
-                f += a;
-            }
-        }
-        cir.setReturnValue(context.getRandom().nextFloat() < f);
-        //return pContext.getRandom().nextFloat() < f;
-    }
+	/**
+	 * @author AnMao
+	 * @reason add loot
+	 */
+	@Inject(method = "test(Lnet/minecraft/world/level/storage/loot/LootContext;)Z", at = @At("HEAD"), cancellable = true)
+	public void srsl$test$add(LootContext context, CallbackInfoReturnable<Boolean> cir) {
+		Entity entity = context.getParameter(LootContextParams.ATTACKING_ENTITY);
+		int i = entity instanceof LivingEntity livingentity ? EnchantmentHelper.getEnchantmentLevel(this.enchantment, livingentity) : 0;
+		float f = i > 0 ? this.enchantedChance.calculate(i) : this.unenchantedChance;
+		if (entity instanceof ServerPlayer serverPlayer) {
+			ItemStack item = serverPlayer.getMainHandItem();
+			CompoundTag nbt = EnchantHelper.getAllData(item);
+			CompoundTag dualityData = nbt.getCompound("duality.data").orElse(new CompoundTag());
+			int a = dualityData.getInt("duality").orElse(0);
+			if (a > 0) {
+				a /= 5;
+				f += a;
+			}
+		}
+		cir.setReturnValue(context.getRandom().nextFloat() < f);
+		//return pContext.getRandom().nextFloat() < f;
+	}
 
 }

@@ -1,77 +1,64 @@
-package dev.anye.mc.srsl.core;
+package dev.anye.mc.srsl.reg.enchant;
 
+import dev.anye.mc.cores.register.Register;
 import dev.anye.mc.srsl.SRSL;
-import dev.anye.mc.srsl.config.enchants.EnchantsConfig;
-import dev.anye.mc.srsl.enchant.blood.coagulation.Coagulation;
-import dev.anye.mc.srsl.enchant.blood.vampirism.Vampirism;
-import dev.anye.mc.srsl.enchant.curse.corrode.Corrode;
-import dev.anye.mc.srsl.enchant.curse.disease.CurseDisease;
-import dev.anye.mc.srsl.enchant.neko.armor.nekoblessing.NekoBlessing;
-import dev.anye.mc.srsl.enchant.neko.armor.nekolife.NekoLife;
-import dev.anye.mc.srsl.enchant.neko.armor.nekomirror.NekoMirror;
-import dev.anye.mc.srsl.enchant.neko.armor.nekoninja.NekoNinja;
-import dev.anye.mc.srsl.enchant.neko.armor.nekosoul.NekoSoul;
-import dev.anye.mc.srsl.enchant.neko.item.nekoblade.NekoBlade;
-import dev.anye.mc.srsl.enchant.neko.item.nekochop.NekoChop;
-import dev.anye.mc.srsl.enchant.neko.item.nekoday.NekoDay;
-import dev.anye.mc.srsl.enchant.neko.item.nekoemperor.NekoEmperor;
-import dev.anye.mc.srsl.enchant.neko.item.nekogod.NekoGod;
-import dev.anye.mc.srsl.enchant.neko.item.nekoking.NekoKing;
-import dev.anye.mc.srsl.enchant.neko.item.nekolove.NekoLove;
-import dev.anye.mc.srsl.enchant.neko.item.nekomeow.NekoMeow;
-import dev.anye.mc.srsl.enchant.neko.item.nekonight.NekoNight;
-import dev.anye.mc.srsl.enchant.phenomenon.duality.Duality;
-import dev.anye.mc.srsl.enchant.phenomenon.theworld.TheWorldEnchant;
-import dev.anye.mc.srsl.enchant.spirit.armor.adaptive.Adaptive;
-import dev.anye.mc.srsl.enchant.spirit.armor.natural.Natural;
-import dev.anye.mc.srsl.enchant.spirit.armor.redlotus.RedLotus;
-import dev.anye.mc.srsl.enchant.spirit.armor.stance.Stance;
-import dev.anye.mc.srsl.enchant.spirit.armor.warlord.Warlord;
-import dev.anye.mc.srsl.enchant.spirit.sword.angel.Angel;
-import dev.anye.mc.srsl.enchant.spirit.sword.cross.Cross;
-import dev.anye.mc.srsl.enchant.spirit.sword.deathsickle.DeathSickle;
-import dev.anye.mc.srsl.enchant.spirit.sword.ganjiang.GanJiang;
-import dev.anye.mc.srsl.enchant.spirit.sword.judgment.Judgment;
-import dev.anye.mc.srsl.enchant.spirit.sword.mahogany.Mahogany;
-import dev.anye.mc.srsl.enchant.spirit.sword.moye.MoYe;
-import dev.anye.mc.srsl.enchant.spirit.sword.zenstick.ZenStick;
-import dev.anye.mc.srsl.enchant.zero.bow.rain_of_arrows.RainOfArrows;
-import dev.anye.mc.srsl.enchant.zero.bow.tori_no_uta.ToriNoUta;
-import dev.anye.mc.srsl.enchant.zero.item.alone.Alone;
-import dev.anye.mc.srsl.enchant.zero.item.breakdefense.BreakDefense;
-import dev.anye.mc.srsl.enchant.zero.item.bright.Bright;
-import dev.anye.mc.srsl.enchant.zero.item.confusion.Confusion;
-import dev.anye.mc.srsl.enchant.zero.item.deathproclamation.DeathProclamation;
-import dev.anye.mc.srsl.enchant.zero.item.fetters.Fetters;
-import dev.anye.mc.srsl.enchant.zero.item.indestructible.Indestructible;
-import dev.anye.mc.srsl.enchant.zero.item.purify.Purify;
-import dev.anye.mc.srsl.enchant.zero.item.unbreakable.Unbreakable;
-import net.minecraft.core.Registry;
+import dev.anye.mc.srsl.config.enchants.EnchantConfigData;
+import dev.anye.mc.srsl.config.enchants.EnchantIO;
+import dev.anye.mc.srsl.reg.enchant.blood.coagulation.Coagulation;
+import dev.anye.mc.srsl.reg.enchant.blood.vampirism.Vampirism;
+import dev.anye.mc.srsl.reg.enchant.curse.corrode.Corrode;
+import dev.anye.mc.srsl.reg.enchant.curse.disease.CurseDisease;
+import dev.anye.mc.srsl.reg.enchant.neko.armor.nekoblessing.NekoBlessing;
+import dev.anye.mc.srsl.reg.enchant.neko.armor.nekolife.NekoLife;
+import dev.anye.mc.srsl.reg.enchant.neko.armor.nekomirror.NekoMirror;
+import dev.anye.mc.srsl.reg.enchant.neko.armor.nekoninja.NekoNinja;
+import dev.anye.mc.srsl.reg.enchant.neko.armor.nekosoul.NekoSoul;
+import dev.anye.mc.srsl.reg.enchant.neko.item.nekoblade.NekoBlade;
+import dev.anye.mc.srsl.reg.enchant.neko.item.nekochop.NekoChop;
+import dev.anye.mc.srsl.reg.enchant.neko.item.nekoday.NekoDay;
+import dev.anye.mc.srsl.reg.enchant.neko.item.nekoemperor.NekoEmperor;
+import dev.anye.mc.srsl.reg.enchant.neko.item.nekogod.NekoGod;
+import dev.anye.mc.srsl.reg.enchant.neko.item.nekoking.NekoKing;
+import dev.anye.mc.srsl.reg.enchant.neko.item.nekolove.NekoLove;
+import dev.anye.mc.srsl.reg.enchant.neko.item.nekomeow.NekoMeow;
+import dev.anye.mc.srsl.reg.enchant.neko.item.nekonight.NekoNight;
+import dev.anye.mc.srsl.reg.enchant.phenomenon.duality.Duality;
+import dev.anye.mc.srsl.reg.enchant.phenomenon.theworld.TheWorldEnchant;
+import dev.anye.mc.srsl.reg.enchant.spirit.armor.adaptive.Adaptive;
+import dev.anye.mc.srsl.reg.enchant.spirit.armor.natural.Natural;
+import dev.anye.mc.srsl.reg.enchant.spirit.armor.redlotus.RedLotus;
+import dev.anye.mc.srsl.reg.enchant.spirit.armor.stance.Stance;
+import dev.anye.mc.srsl.reg.enchant.spirit.armor.warlord.Warlord;
+import dev.anye.mc.srsl.reg.enchant.spirit.sword.angel.Angel;
+import dev.anye.mc.srsl.reg.enchant.spirit.sword.cross.Cross;
+import dev.anye.mc.srsl.reg.enchant.spirit.sword.deathsickle.DeathSickle;
+import dev.anye.mc.srsl.reg.enchant.spirit.sword.ganjiang.GanJiang;
+import dev.anye.mc.srsl.reg.enchant.spirit.sword.judgment.Judgment;
+import dev.anye.mc.srsl.reg.enchant.spirit.sword.mahogany.Mahogany;
+import dev.anye.mc.srsl.reg.enchant.spirit.sword.moye.MoYe;
+import dev.anye.mc.srsl.reg.enchant.spirit.sword.zenstick.ZenStick;
+import dev.anye.mc.srsl.reg.enchant.zero.bow.rain_of_arrows.RainOfArrows;
+import dev.anye.mc.srsl.reg.enchant.zero.bow.tori_no_uta.ToriNoUta;
+import dev.anye.mc.srsl.reg.enchant.zero.item.alone.Alone;
+import dev.anye.mc.srsl.reg.enchant.zero.item.breakdefense.BreakDefense;
+import dev.anye.mc.srsl.reg.enchant.zero.item.bright.Bright;
+import dev.anye.mc.srsl.reg.enchant.zero.item.confusion.Confusion;
+import dev.anye.mc.srsl.reg.enchant.zero.item.deathproclamation.DeathProclamation;
+import dev.anye.mc.srsl.reg.enchant.zero.item.fetters.Fetters;
+import dev.anye.mc.srsl.reg.enchant.zero.item.indestructible.Indestructible;
+import dev.anye.mc.srsl.reg.enchant.zero.item.purify.Purify;
+import dev.anye.mc.srsl.reg.enchant.zero.item.unbreakable.Unbreakable;
+import dev.anye.mc.srsl.reg.enchant.zero.tool.ChainHarvesting;
 import net.minecraft.resources.Identifier;
-import net.minecraft.resources.ResourceKey;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredRegister;
-import net.neoforged.neoforge.registries.RegistryBuilder;
 
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 
 public class EnchantReg {
 	public static final Identifier KEY = Identifier.fromNamespaceAndPath(SRSL.MOD_ID, "enchant");
-	public static final ResourceKey<Registry<Enchant>> REGISTRY_KEY = ResourceKey.createRegistryKey(KEY);
-	public static final Registry<Enchant> REGISTRY = new RegistryBuilder<>(REGISTRY_KEY)
-			.sync(true)
-			//.defaultKey(ResourceLocation.fromNamespaceAndPath("yourmodid", "empty"))
-			// Effectively limits the max count. Generally discouraged, but may make sense in settings such as networking.
-			.maxId(256)
-			// Build the registry.
-			.create();
-	public static final DeferredRegister<Enchant> ENCHANT = DeferredRegister.create(REGISTRY, SRSL.MOD_ID);
-	//public static final Supplier<Registry<Enchant>> REGISTRY = ENCHANT.getRegistry();
-
-	//public static final RegistryObject<EnchantmentCore> BASE = ENCHANT.register("base", BaseSkill::new);
+	public static final Register<Enchant> ENCHANT = new Register<>(KEY, enchantRegistryBuilder -> enchantRegistryBuilder.sync(true));
 
 	public static DeferredHolder<Enchant, Enchant> NEKO_BLADE = reg("neko_blade", NekoBlade::new);
 	public static DeferredHolder<Enchant, Enchant> NEKO_GOD = reg("neko_god", NekoGod::new);
@@ -116,11 +103,11 @@ public class EnchantReg {
 	public static DeferredHolder<Enchant, Enchant> Z_INDESTRUCTIBLE = reg("zi_indestructible", Indestructible::new);
 	public static DeferredHolder<Enchant, Unbreakable> Z_UNBREAKABLE = reg("zi_unbreakable", Unbreakable::new);
 	public static DeferredHolder<Enchant, Enchant> RAIN_OF_ARROWS = reg("rain_of_arrows", RainOfArrows::new);
-	public static DeferredHolder<Enchant, Enchant> TORI_NO_UTA = reg("tori_no_uta", ToriNoUta::new);
+	public static DeferredHolder<Enchant, ToriNoUta> TORI_NO_UTA = reg("tori_no_uta", ToriNoUta::new);
 
-	public static DeferredHolder<Enchant, Enchant> ChainHarvesting = reg("chain_harvesting", dev.anye.mc.srsl.enchant.zero.tool.ChainHarvesting::new);
+	public static DeferredHolder<Enchant, ChainHarvesting> Chain_Harvesting = reg("chain_harvesting", ChainHarvesting::new);
 
-	public static DeferredHolder<Enchant, Enchant> B_DRINK_BLOOD = reg("b_vampirism", Vampirism::new);
+	public static DeferredHolder<Enchant, Vampirism> B_DRINK_BLOOD = reg("b_vampirism", Vampirism::new);
 	public static DeferredHolder<Enchant, Enchant> B_COAGULATION = reg("b_coagulation", Coagulation::new);
 
 	public static DeferredHolder<Enchant, Enchant> CURSE_DISEASE = reg("curse_disease", CurseDisease::new);
@@ -132,20 +119,22 @@ public class EnchantReg {
 	//public static DeferredHolder<Enchant, Enchant> MYRIAD_PHENOMENA = reg("myriad_phenomena", MyriadPhenomena::new);
 
 
-	public static DeferredHolder<Enchant, Enchant> reg(String name, Function<String, Enchant> function) {
-		if (EnchantsConfig.INSTANCE.isEnable(name)) {
-			return ENCHANT.register(name, () -> function.apply(name));
-		}
-		return null;
-	}
 
+	public static <T extends Enchant> DeferredHolder<Enchant,T> reg(String name , Function<EnchantConfigData , T> function) {
+		return ENCHANT.register(name, () -> function.apply(EnchantIO.get(name)));
+	}
+	/*
 	public static <T extends Enchant> DeferredHolder<Enchant, T> reg(String name, Supplier<T> sup) {
-		if (EnchantsConfig.INSTANCE.isEnable(name)) {
+
+		EnchantConfigData enchantConfigData = EnchantIO.get(name);
+		if (EnchantsConfig.INSTANCE.isEnable(EnchantIO.get(name),name)) {
 			return ENCHANT.register(name, sup);
 		} else {
 			return null;
 		}
 	}
+
+	 */
 
 
 	public static void register(IEventBus eventBus) {
@@ -157,10 +146,10 @@ public class EnchantReg {
 	}
 
 	public static Enchant getEnchant(Identifier resourceLocation) {
-		return REGISTRY.get(resourceLocation).get().value();
+		return ENCHANT.registry().get(resourceLocation).orElseThrow().value();
 	}
 
 	public static Identifier getResourceLocation(Enchant enchant) {
-		return REGISTRY.getKey(enchant);
+		return ENCHANT.registry().getKey(enchant);
 	}
 }

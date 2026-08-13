@@ -1,7 +1,7 @@
-package dev.anye.mc.srsl.core;
+package dev.anye.mc.srsl.reg.enchant;
 
+import dev.anye.core.data._Data;
 import dev.anye.mc.srsl.config.enchants.EnchantConfigData;
-import dev.anye.mc.srsl.reg.enchant.EnchantReg;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.CommonComponents;
@@ -11,17 +11,29 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.bus.api.IEventBus;
 import org.jetbrains.annotations.NotNull;
 
-public abstract class Enchant extends EnchantSlotCheck implements EnchantBase {
-	private final ChatFormatting nameColor;
+public abstract class Enchant extends EnchantSlotCheck {
+	protected final boolean enable;
+	protected final _Data config;
+	protected final ChatFormatting nameColor;
+	protected final EnchantConfigData defaultData;
 
-	protected Enchant() {
-		this(ChatFormatting.GRAY);
+	protected Enchant(EnchantConfigData configData,EnchantConfigData defaultData) {
+		this(configData,defaultData,ChatFormatting.GRAY);
 	}
 
-	protected Enchant(ChatFormatting chatFormatting) {
+	protected Enchant(EnchantConfigData configData,EnchantConfigData defaultData,ChatFormatting chatFormatting) {
 		this.nameColor = chatFormatting;
+		this.defaultData = defaultData;
+		if (configData != null){
+			this.enable = configData.enable();
+			this.config = configData.parameters();
+		}else {
+			this.enable = defaultData.enable();
+			this.config = defaultData.parameters();
+		}
 	}
 
 	public Identifier getRegistryName() {
@@ -33,7 +45,6 @@ public abstract class Enchant extends EnchantSlotCheck implements EnchantBase {
 	}
 
 	@NotNull
-	@Override
 	public Component getFullName(int pLevel) {
 		MutableComponent mutablecomponent = Component.translatable(this.getDescriptionId());
 		mutablecomponent.withStyle(nameColor);
@@ -41,51 +52,54 @@ public abstract class Enchant extends EnchantSlotCheck implements EnchantBase {
 		if (pLevel > 1) {
 			mutablecomponent.append(CommonComponents.SPACE).append(Component.translatable("enchantment.level." + pLevel));
 		}
-		return mutablecomponent;
+		return mutablecomponent.append(Component.literal("x"));
 	}
 
-	@Override
 	public int getMaxLevel() {
 		return 1;
 	}
 
-	@Override
 	public int getCost(int level) {
 		return 30;
 	}
 
-	@Override
 	public int getWeight() {
 		return 100;
 	}
 
-	@Override
 	public boolean canEnchant(ItemStack stack) {
 		return false;
 	}
 
-	@Override
 	public void doPostAttack(LivingEntity pAttacker, Entity pTarget, int pLevel) {
 
 	}
 
-	@Override
 	public void doPostHurt(LivingEntity pTarget, Entity pAttacker, int pLevel) {
 
 	}
 
-	@Override
 	public float getDamageBonus(int level, Entity target, ItemStack enchantedItem) {
 		return 0;
 	}
 
 
-	public void loadConfig(CompoundTag data){}
-	public CompoundTag defaultConfig(){
-		return new CompoundTag();
+	public void loadConfig(CompoundTag data) {
 	}
 
-	public EnchantConfigData defaultEnchantConfigData(){
-		return new EnchantConfigData(true,defaultConfig());
+	public EnchantConfigData defaultData() {
+		return defaultData;
+	}
+
+
+	public final void event(IEventBus modEventBus){
+		if (enable) register(modEventBus);
+	}
+
+	protected void register(IEventBus modEventBus){}
+
+
+	public boolean enable(){
+		return enable;
 	}
 }

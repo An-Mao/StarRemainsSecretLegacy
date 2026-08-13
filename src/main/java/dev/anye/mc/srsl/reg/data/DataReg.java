@@ -1,8 +1,6 @@
-package dev.anye.mc.srsl.reg;
+package dev.anye.mc.srsl.reg.data;
 
 import dev.anye.mc.srsl.SRSL;
-import dev.anye.mc.srsl.core.CoolDownData;
-import dev.anye.mc.srsl.core.EnchantData;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;

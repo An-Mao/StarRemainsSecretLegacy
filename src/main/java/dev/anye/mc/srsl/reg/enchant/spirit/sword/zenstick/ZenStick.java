@@ -1,6 +1,7 @@
 package dev.anye.mc.srsl.reg.enchant.spirit.sword.zenstick;
 
-import dev.anye.mc.srsl.effect.Effects;
+import dev.anye.mc.srsl.config.enchants.EnchantConfigData;
+import dev.anye.mc.srsl.reg.effect.Effects;
 import dev.anye.mc.srsl.reg.enchant.spirit.sword.SSE;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -11,12 +12,10 @@ import net.minecraft.world.entity.monster.Monster;
 import org.jetbrains.annotations.NotNull;
 
 public class ZenStick extends SSE {
-	private static final MobEffectInstance YanLing = new MobEffectInstance(Effects.YAN_LING.getDelegate(), 1, 200);
-
-	public ZenStick() {
-		super();
+	private static final EnchantConfigData DEFAULT = EnchantConfigData.empty();
+	public ZenStick(EnchantConfigData enchantConfigData) {
+		super(enchantConfigData,DEFAULT);
 	}
-
 	@Override
 	public void doPostAttack(LivingEntity pAttacker, @NotNull Entity pTarget, int pLevel) {
 		if (!pAttacker.level().isClientSide() && pTarget instanceof Mob mob) {
@@ -29,12 +28,11 @@ public class ZenStick extends SSE {
 						break;
 					}
 				}
-				//System.out.println("i"+i);
 				if (i == 17) {
 					pTarget.kill((ServerLevel) pAttacker.level());
 				}
 			} else {
-				mob.addEffect(YanLing);
+				mob.addEffect(new MobEffectInstance(Effects.YAN_LING.getDelegate(), 200, 1));
 			}
 		}
 		super.doPostAttack(pAttacker, pTarget, pLevel);

@@ -1,9 +1,9 @@
-package dev.anye.mc.srsl.effect;
+package dev.anye.mc.srsl.reg.effect;
 
 import dev.anye.mc.srsl.SRSL;
-import dev.anye.mc.srsl.effect.breakdefense.BreakDefense;
-import dev.anye.mc.srsl.effect.evilcreature.EvilCreature;
-import dev.anye.mc.srsl.effect.yanling.YanLing;
+import dev.anye.mc.srsl.reg.effect.breakdefense.BreakDefense;
+import dev.anye.mc.srsl.reg.effect.evilcreature.EvilCreature;
+import dev.anye.mc.srsl.reg.effect.yanling.YanLing;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.effect.MobEffect;
 import net.neoforged.bus.api.IEventBus;

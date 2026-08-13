@@ -1,5 +1,6 @@
-package dev.anye.mc.srsl.core;
+package dev.anye.mc.srsl.reg.item;
 
+import dev.anye.mc.srsl.core.EnchantHelper;
 import dev.anye.mc.srsl.reg.enchant.Enchant;
 
 import java.util.List;
@@ -11,6 +12,9 @@ public class EnchantRandom {
 	private final Random random;
 	private final int totalWeight;
 
+	public EnchantRandom(){
+		this(EnchantHelper.getAllEnchants());
+	}
 	public EnchantRandom(List<Enchant> enchantList) {
 		this.enchantList = enchantList;
 		this.cumulativeWeights = new int[enchantList.size()];
@@ -48,5 +52,14 @@ public class EnchantRandom {
 
 	public int getTotalWeight() {
 		return totalWeight;
+	}
+
+
+
+	private static EnchantRandom enchantRandom = null;
+
+	public static Enchant getRandom(){
+		if (enchantRandom == null) enchantRandom = new EnchantRandom();
+		return enchantRandom.getRandomItem();
 	}
 }

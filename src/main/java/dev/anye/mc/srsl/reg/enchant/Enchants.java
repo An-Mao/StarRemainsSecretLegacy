@@ -1,6 +1,6 @@
-package dev.anye.mc.srsl.core;
+package dev.anye.mc.srsl.reg.enchant;
 
-import dev.anye.mc.srsl.enchant.zero.item.unbreakable.Unbreakable;
+import dev.anye.mc.srsl.reg.enchant.zero.item.unbreakable.Unbreakable;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class Enchants extends EnchantReg {
@@ -56,7 +56,7 @@ public class Enchants extends EnchantReg {
 	public static Enchant rainOfArrows = getEnchantment(RAIN_OF_ARROWS);
 
 	public static Enchant toriNoUta = getEnchantment(TORI_NO_UTA);
-	public static Enchant chainHarvesting = getEnchantment(ChainHarvesting);
+	public static Enchant chainHarvesting = getEnchantment(Chain_Harvesting);
 
 
 	public static Enchant duality = getEnchantment(DUALITY);

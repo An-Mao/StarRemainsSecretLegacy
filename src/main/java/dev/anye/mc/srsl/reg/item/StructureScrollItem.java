@@ -1,4 +1,4 @@
-package dev.anye.mc.srsl.item;
+package dev.anye.mc.srsl.reg.item;
 
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.logging.LogUtils;

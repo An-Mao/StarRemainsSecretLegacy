@@ -1,9 +1,9 @@
-package dev.anye.mc.srsl.item;
+package dev.anye.mc.srsl.reg.item;
 
 import dev.anye.mc.srsl.SRSL;
-import dev.anye.mc.srsl.reg.DataReg;
-import dev.anye.mc.srsl.core.EnchantData;
 import dev.anye.mc.srsl.core.EnchantHelper;
+import dev.anye.mc.srsl.reg.data.DataReg;
+import dev.anye.mc.srsl.reg.data.EnchantData;
 import dev.anye.mc.srsl.reg.enchant.EnchantReg;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;

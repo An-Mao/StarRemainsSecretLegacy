@@ -1,4 +1,4 @@
-package dev.anye.mc.srsl.item;
+package dev.anye.mc.srsl.reg.item;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;

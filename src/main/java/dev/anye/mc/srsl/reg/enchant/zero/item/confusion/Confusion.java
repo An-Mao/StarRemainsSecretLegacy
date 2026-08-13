@@ -1,7 +1,6 @@
 package dev.anye.mc.srsl.reg.enchant.zero.item.confusion;
 
-import dev.anye.mc.srsl.config.enchants.EnchantsConfig;
-import dev.anye.mc.srsl.reg.enchant.EnchantReg;
+import dev.anye.mc.srsl.config.enchants.EnchantConfigData;
 import dev.anye.mc.srsl.reg.enchant.zero.item.ZeroItemE;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
@@ -12,10 +11,16 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class Confusion extends ZeroItemE {
-	private final float radius = EnchantsConfig.INSTANCE.getValue(EnchantReg.Z_CONFUSION, "radius");
-
-	public Confusion() {
-		super();
+	private static final EnchantConfigData DEFAULT = EnchantConfigData.create(data -> {
+		data.add("radius",30F);
+	});
+	private final float radius;
+	public record Data(float radius) {
+		public static final Data DEFAULT = new Data(30);
+	}
+	public Confusion(EnchantConfigData enchantConfigData) {
+		super(enchantConfigData,DEFAULT);
+		radius = config.asFloat("radius");
 	}
 
 	@Override

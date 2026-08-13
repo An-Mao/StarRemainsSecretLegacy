@@ -1,4 +1,4 @@
-package dev.anye.mc.srsl.block;
+package dev.anye.mc.srsl.reg.block;
 
 import dev.anye.mc.srsl.SRSL;
 import dev.anye.mc.srsl.reg.item.ItemReg;

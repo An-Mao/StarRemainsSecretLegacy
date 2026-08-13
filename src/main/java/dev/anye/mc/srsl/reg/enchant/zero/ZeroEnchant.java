@@ -1,10 +1,11 @@
 package dev.anye.mc.srsl.reg.enchant.zero;
 
-import dev.anye.mc.srsl.core.Enchant;
+import dev.anye.mc.srsl.config.enchants.EnchantConfigData;
+import dev.anye.mc.srsl.reg.enchant.Enchant;
 import net.minecraft.ChatFormatting;
 
-public class ZeroEnchant extends Enchant {
-	protected ZeroEnchant() {
-		super(ChatFormatting.DARK_PURPLE);
+public abstract class ZeroEnchant extends Enchant {
+	protected ZeroEnchant(EnchantConfigData enchantConfigData,EnchantConfigData defaultData) {
+		super(enchantConfigData,defaultData,ChatFormatting.DARK_PURPLE);
 	}
 }

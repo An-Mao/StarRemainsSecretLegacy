@@ -11,12 +11,12 @@ import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 public class DataGen_LootTableProvider {
-    public static LootTableProvider create(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
-        return new LootTableProvider(
-                output,
-                Set.of(),
-                List.of(new LootTableProvider.SubProviderEntry(Loot_BlockLootTables::new, LootContextParamSets.BLOCK)),
-                provider
-        );
-    }
+	public static LootTableProvider create(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+		return new LootTableProvider(
+				output,
+				Set.of(),
+				List.of(new LootTableProvider.SubProviderEntry(Loot_BlockLootTables::new, LootContextParamSets.BLOCK)),
+				provider
+		);
+	}
 }

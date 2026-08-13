@@ -1,4 +1,4 @@
-package dev.anye.mc.srsl.core;
+package dev.anye.mc.srsl.reg.data;
 
 import com.mojang.logging.LogUtils;
 import com.mojang.serialization.Codec;

@@ -1,8 +1,7 @@
 package dev.anye.mc.srsl.reg.enchant.neko.item.nekogod;
 
 import dev.anye.core.math._Math;
-import dev.anye.mc.srsl.config.enchants.EnchantsConfig;
-import dev.anye.mc.srsl.reg.enchant.EnchantReg;
+import dev.anye.mc.srsl.config.enchants.EnchantConfigData;
 import dev.anye.mc.srsl.reg.enchant.neko.item.NekoEI;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
@@ -10,11 +9,20 @@ import net.minecraft.world.entity.LivingEntity;
 import org.jetbrains.annotations.NotNull;
 
 public class NekoGod extends NekoEI {
-	private final float probability = EnchantsConfig.INSTANCE.getValue(EnchantReg.NEKO_GOD, "probability");
-	private final float lvl = EnchantsConfig.INSTANCE.getValue(EnchantReg.NEKO_GOD, "level");
-
-	public NekoGod() {
-		super();
+	private static final EnchantConfigData DEFAULT = EnchantConfigData.create(data -> {
+		data
+				.add("probability",2F)
+				.add("level",500F);
+	});
+	private final float probability;
+	private final float lvl;
+	public record Data(float probability,float level) {
+		public static final Data DEFAULT = new Data(2,500);
+	}
+	public NekoGod(EnchantConfigData enchantConfigData) {
+		super(enchantConfigData,DEFAULT);
+		probability = config.asFloat("probability");
+		lvl = config.asFloat("level");
 	}
 
 	@Override

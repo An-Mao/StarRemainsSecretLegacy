@@ -1,4 +1,4 @@
-package dev.anye.mc.srsl.effect.evilcreature;
+package dev.anye.mc.srsl.reg.effect.evilcreature;
 
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;

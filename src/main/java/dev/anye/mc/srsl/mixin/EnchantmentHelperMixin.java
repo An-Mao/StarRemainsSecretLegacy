@@ -11,14 +11,15 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(value = EnchantmentHelper.class,remap = false)
+@Mixin(value = EnchantmentHelper.class, remap = false)
 public class EnchantmentHelperMixin {
-    private EnchantmentHelperMixin() {}
+	private EnchantmentHelperMixin() {
+	}
 
-    @Inject(method = "modifyDamage", at = @At("RETURN"), cancellable = true)
-    private static void srsl$modifyDamage$enchant(ServerLevel serverLevel, ItemStack itemStack, Entity victim, DamageSource damageSource, float damage, CallbackInfoReturnable<Float> cir) {
-        float[] d = {0};
-        EnchantHelper.getEnchants(itemStack).forEach((ench, level) -> d[0] += ench.getDamageBonus(level, victim, itemStack));
-        cir.setReturnValue(cir.getReturnValue() + d[0]);
-    }
+	@Inject(method = "modifyDamage", at = @At("RETURN"), cancellable = true)
+	private static void srsl$modifyDamage$enchant(ServerLevel serverLevel, ItemStack itemStack, Entity victim, DamageSource damageSource, float damage, CallbackInfoReturnable<Float> cir) {
+		float[] d = {0};
+		EnchantHelper.getEnchants(itemStack).forEach((ench, level) -> d[0] += ench.getDamageBonus(level, victim, itemStack));
+		cir.setReturnValue(cir.getReturnValue() + d[0]);
+	}
 }
